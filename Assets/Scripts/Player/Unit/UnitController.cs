@@ -146,7 +146,13 @@ namespace Command.Player
         }
 
         public void ResetStats() => CurrentPower = unitScriptableObject.Power;
-        public void Revive() => SetAliveState(UnitAliveState.ALIVE);
+
+        public void Revive()
+        {
+            SetAliveState(UnitAliveState.ALIVE);
+            unitView.PlayAnimation(UnitAnimations.IDLE);
+        }
+
         public void Destroy() => UnityEngine.Object.Destroy(unitView.gameObject);
         public void ResetUnitIndicator() => unitView.SetUnitIndicator(false);
         public void ProcessUnitCommand(UnitCommand commandToProcess) => GameService.Instance.CommandInvoker.ProcessCommand(commandToProcess);

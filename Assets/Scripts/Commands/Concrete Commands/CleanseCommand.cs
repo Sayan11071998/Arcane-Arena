@@ -16,5 +16,13 @@ namespace Command.Commands
 
         public override bool WillHitTarget() => Random.Range(0f, 1f) < hitChance;
         public override void Execute() => GameService.Instance.ActionService.GetActionByType(CommandType.Cleanse).PerformAction(actorUnit, targetUnit, willHitTarget);
+
+        public override void Undo()
+        {
+            if (willHitTarget)
+                targetUnit.CurrentPower -= (int)(targetUnit.CurrentPower * 0.2f);
+
+            actorUnit.Owner.ResetCurrentActiveUnit();
+        }
     }
 }
