@@ -1,4 +1,3 @@
-using Command.Input;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +7,6 @@ namespace Command.UI
 {
     public class GameplayUIView : MonoBehaviour, IUIView
     {
-        private GameplayUIController controller;
         [SerializeField] private TextMeshProUGUI turnText;
         [SerializeField] private TextMeshProUGUI missedText;
         [SerializeField] private Image Player1BackgroundOverlay;
@@ -18,21 +16,22 @@ namespace Command.UI
         [SerializeField] private Color ActionSelectionOverlayColor;
         [SerializeField] private Image backgroundImage;
 
-        public void SetController(GameplayUIController controllerToSet) 
+        private GameplayUIController controller;
+
+        public void SetController(GameplayUIController controllerToSet)
         {
             controller = controllerToSet;
             missedText.canvasRenderer.SetAlpha(0);
         }
 
-        public void DisableView() => gameObject.SetActive(false);
-
         public void EnableView() => gameObject.SetActive(true);
+        public void DisableView() => gameObject.SetActive(false);
 
         public void SetTurnText(string turnText) => this.turnText.SetText(turnText);
 
         public void ShowPlayerOverlay(int targetPlayer, OverlayColorType overlayColorType)
         {
-            switch(targetPlayer)
+            switch (targetPlayer)
             {
                 case 1:
                     Player1BackgroundOverlay.enabled = true;
@@ -62,7 +61,7 @@ namespace Command.UI
 
         public void SetOverlayColor(Image overlayImage, OverlayColorType colorType)
         {
-            switch(colorType)
+            switch (colorType)
             {
                 case OverlayColorType.Friendly:
                     overlayImage.color = FriendlyOverlayColor;
@@ -82,7 +81,7 @@ namespace Command.UI
         {
             backgroundImage.gameObject.SetActive(true);
             backgroundImage.sprite = bgSprite;
-        } 
+        }
     }
 
     [Serializable]

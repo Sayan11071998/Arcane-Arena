@@ -1,4 +1,3 @@
-using Command.Main;
 using UnityEngine.SceneManagement;
 
 namespace Command.UI
@@ -14,11 +13,9 @@ namespace Command.UI
         }
 
         public void Show() => battleEndView.EnableView();
-
         public void Hide() => battleEndView.DisableView();
 
         public void SetWinner(int winnerId) => battleEndView.SetResultText($"Player {winnerId} Won!");
-
         public void OnHomeButtonClicked() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

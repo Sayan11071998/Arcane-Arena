@@ -1,5 +1,4 @@
 using Command.Input;
-using Command.Main;
 using UnityEngine;
 
 namespace Command.UI
@@ -15,7 +14,6 @@ namespace Command.UI
         }
 
         public void Show() => gameplayView.EnableView();
-
         public void SetTurnNumber(int turnNumber) => gameplayView.SetTurnText($"Turn: {turnNumber}");
 
         public void ShowActionOverlay(int activePlayer)
@@ -46,9 +44,7 @@ namespace Command.UI
         }
 
         public void ResetBattleBackgroundOverlay() => gameplayView.ResetBackgroundOverlay();
-
         public void ShowMissedAction() => gameplayView.ShowMissedText();
-
         public void SetBattleBackgroundImage(Sprite bgSprite) => gameplayView.SetBattleBackgroundImage(bgSprite);
     }
 }

@@ -8,18 +8,10 @@ using Command.UI;
 using Command.Events;
 using Command.Battle;
 using Command.Actions;
-using UnityEngine.UI;
 using Command.Commands;
 
 namespace Command.Main
 {
-
-    /**  This script demonstrates implementation of the Service Locator Pattern.
-    *  If you're interested in learning about Service Locator Pattern, 
-    *  you can find a dedicated course on Outscal's website.
-    *  Link: https://outscal.com/courses
-    **/
-
     public class GameService : GenericMonoSingleton<GameService>
     {
         // Services:
@@ -50,10 +42,12 @@ namespace Command.Main
             InputService = new InputService();
             BattleService = new BattleService(battleScriptableObjects);
             PlayerService = new PlayerService();
-            CommandInvoker = new CommandInvoker();
             uiService.Init(battleScriptableObjects.Count);
+            CommandInvoker = new CommandInvoker();
         }
 
         private void Update() => InputService.UpdateInputService();
+
+        public void ProcessUnitCommand(ICommand commandToProcess) => PlayerService.ProcessUnitCommand(commandToProcess as UnitCommand);
     }
 }
