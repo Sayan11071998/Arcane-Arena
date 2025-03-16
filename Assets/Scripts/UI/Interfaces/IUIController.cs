@@ -1,7 +1,4 @@
 namespace Command.UI
 {
-    public interface IUIController
-    {
-
-    }
+    public interface IUIController { }
 }

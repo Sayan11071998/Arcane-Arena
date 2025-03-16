@@ -1,6 +1,4 @@
-using System.Windows.Input;
 using Command.Player;
-using UnityEngine;
 
 namespace Command.Commands
 {

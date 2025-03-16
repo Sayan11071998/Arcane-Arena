@@ -46,6 +46,7 @@ namespace Command.Player
         {
             CurrentMaxHealth = CurrentHealth = unitScriptableObject.MaxHealth;
             CurrentPower = unitScriptableObject.Power;
+
             SetAliveState(UnitAliveState.ALIVE);
             SetUsedState(UnitUsedState.NOT_USED);
         }
@@ -61,7 +62,6 @@ namespace Command.Player
         private void SetAliveState(UnitAliveState stateToSet) => aliveState = stateToSet;
 
         public void SetUsedState(UnitUsedState stateToSet) => UsedState = stateToSet;
-
         public bool IsAlive() => aliveState == UnitAliveState.ALIVE;
 
         public void TakeDamage(int damageToTake)
@@ -146,13 +146,9 @@ namespace Command.Player
         }
 
         public void ResetStats() => CurrentPower = unitScriptableObject.Power;
-
         public void Revive() => SetAliveState(UnitAliveState.ALIVE);
-
         public void Destroy() => UnityEngine.Object.Destroy(unitView.gameObject);
-
         public void ResetUnitIndicator() => unitView.SetUnitIndicator(false);
-
         public void ProcessUnitCommand(UnitCommand commandToProcess) => GameService.Instance.CommandInvoker.ProcessCommand(commandToProcess);
 
         public Vector3 GetEnemyPosition()

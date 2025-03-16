@@ -2,8 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Command.Main;
 using Command.Input;
-using Command.Actions;
-using System.Data;
+using Command.Commands;
 
 namespace Command.UI
 {
@@ -38,15 +37,10 @@ namespace Command.UI
         public void Init(int battleCount) => ShowBattleSelectionView(battleCount);
 
         private void ShowBattleSelectionView(int battleCount) => battleSelectionController.Show(battleCount);
-
         public void ShowGameplayView() => gameplayController.Show();
-
         public void ShowActionOverlay(int activePlayer) => gameplayController.ShowActionOverlay(activePlayer);
-
         public void ShowTargetOverlay(int activePlayer, TargetType targetType) => gameplayController.ShowTargetOverlay(activePlayer, targetType);
-
         public void ResetBattleBackgroundOverlay() => gameplayController.ResetBattleBackgroundOverlay();
-
         public void SetActionContainerAlignment(int activePlayerID) => actionSelectionController.SetActionContainerAlignment(activePlayerID);
 
         public void ShowActionSelectionView(List<CommandType> executableActions)
@@ -62,11 +56,8 @@ namespace Command.UI
         }
 
         public void HideBattleEndUI() => battleEndController.Hide();
-
         public void UpdateTurnNumber(int turnNumber) => gameplayController.SetTurnNumber(turnNumber);
-
         public void ActionMissed() => gameplayController.ShowMissedAction();
-
         public void SetBattleBackgroundImage(Sprite bgSprite) => gameplayController.SetBattleBackgroundImage(bgSprite);
     }
 }

@@ -9,14 +9,13 @@ namespace Command.UI
         [SerializeField] private Vector3 rightAlignedPosition;
 
         public void DisableView() => gameObject.SetActive(false);
-
         public void EnableView() => gameObject.SetActive(true);
 
         public ActionButtonView AddButton(ActionButtonView actionButtonPrefab) => Instantiate(actionButtonPrefab, actionButtonContainer);
 
         public void SetActionContainerAlignment(ActionContainerAlignment alignmentToSet)
         {
-            switch(alignmentToSet)
+            switch (alignmentToSet)
             {
                 case ActionContainerAlignment.Left:
                     actionButtonContainer.localPosition = leftAlignedPosition;

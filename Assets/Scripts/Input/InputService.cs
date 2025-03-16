@@ -1,7 +1,6 @@
 using Command.Main;
 using Command.Player;
 using Command.Commands;
-using Command.Actions;
 
 namespace Command.Input
 {
@@ -21,7 +20,6 @@ namespace Command.Input
         }
 
         public void SetInputState(InputState inputStateToSet) => currentState = inputStateToSet;
-
         private void SubscribeToEvents() => GameService.Instance.EventService.OnActionSelected.AddListener(OnActionSelected);
 
         public void UpdateInputService()
