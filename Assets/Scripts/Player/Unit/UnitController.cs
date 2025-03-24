@@ -129,12 +129,16 @@ namespace Command.Player
             if (actionType == CommandType.None)
                 return;
 
-            if (actionType == unitScriptableObject.executableCommands[0])
-                unitView.PlayAnimation(UnitAnimations.ACTION1);
-            else if (actionType == unitScriptableObject.executableCommands[1])
-                unitView.PlayAnimation(UnitAnimations.ACTION2);
+            int commandIndex = unitScriptableObject.executableCommands.IndexOf(actionType);
+            if (commandIndex >= 0 && commandIndex < unitScriptableObject.commandAnimations.Count)
+            {
+                UnitAnimations animationToPlay = unitScriptableObject.commandAnimations[commandIndex];
+                unitView.PlayAnimation(animationToPlay);
+            }
             else
-                throw new System.Exception($"No Animation found for the action type : {actionType}");
+            {
+                throw new System.Exception($"No animation mapping found for the action type: {actionType}");
+            }
         }
 
         public void OnActionExecuted()
