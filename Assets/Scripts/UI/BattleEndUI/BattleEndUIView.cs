@@ -10,9 +10,14 @@ namespace Command.UI
 
         [SerializeField] private TextMeshProUGUI resultText;
         [SerializeField] private Button homeButton;
+        [SerializeField] private Button replayButton;
 
         private void Start() => SubscribeToButtonClicks();
-        private void SubscribeToButtonClicks() => homeButton.onClick.AddListener(controller.OnHomeButtonClicked);
+        private void SubscribeToButtonClicks()
+        {
+            homeButton.onClick.AddListener(controller.OnHomeButtonClicked);
+            replayButton.onClick.AddListener(controller.OnReplayButtonClicked);
+        }
 
         public void DisableView() => gameObject.SetActive(false);
         public void EnableView() => gameObject.SetActive(true);
