@@ -17,6 +17,7 @@ MonoBehaviour:
   UnitPrefab: {fileID: 7170176875333329667, guid: 696c0c4f156c7a94ba075ee5549f46d9, type: 3}
   MaxHealth: 40
   Power: 15
-  executableCommands: 0200000004000000
+  executableCommands: 020000000400000001000000
+  commandAnimations: 010000000200000003000000
   EnemyBattlePositionOffset: {x: 3, y: 0, z: 0}
   MovementSpeed: 20
