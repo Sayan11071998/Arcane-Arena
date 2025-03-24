@@ -34,19 +34,38 @@ namespace Command.UI
             battleEndController = new BattleEndUIController(battleEndView);
         }
 
-        public void Init(int battleCount) => ShowBattleSelectionView(battleCount);
+        public void Init(int battleCount)
+        {
+            ShowBattleSelectionView(battleCount);
+            SubscribeToEvents();
+        }
 
         private void ShowBattleSelectionView(int battleCount) => battleSelectionController.Show(battleCount);
+
+        private void SubscribeToEvents() => GameService.Instance.EventService.OnReplayButtonClicked.AddListener(HideBattleEndUI);
+
         public void ShowGameplayView() => gameplayController.Show();
+
         public void ShowActionOverlay(int activePlayer) => gameplayController.ShowActionOverlay(activePlayer);
+
         public void ShowTargetOverlay(int activePlayer, TargetType targetType) => gameplayController.ShowTargetOverlay(activePlayer, targetType);
+
         public void ResetBattleBackgroundOverlay() => gameplayController.ResetBattleBackgroundOverlay();
+
         public void SetActionContainerAlignment(int activePlayerID) => actionSelectionController.SetActionContainerAlignment(activePlayerID);
 
         public void ShowActionSelectionView(List<CommandType> executableActions)
         {
-            actionSelectionController.Show(executableActions);
-            GameService.Instance.InputService.SetInputState(InputState.SELECTING_ACTION);
+            switch (GameService.Instance.ReplayService.ReplayState)
+            {
+                case Replay.ReplayState.ACTIVE:
+                    GameService.Instance.StartCoroutine(GameService.Instance.ReplayService.ExecuteNext());
+                    break;
+                case Replay.ReplayState.DEACTIVE:
+                    actionSelectionController.Show(executableActions);
+                    GameService.Instance.InputService.SetInputState(InputState.SELECTING_ACTION);
+                    break;
+            }
         }
 
         public void ShowBattleEndUI(int winnerId)
@@ -56,8 +75,11 @@ namespace Command.UI
         }
 
         public void HideBattleEndUI() => battleEndController.Hide();
+
         public void UpdateTurnNumber(int turnNumber) => gameplayController.SetTurnNumber(turnNumber);
+
         public void ActionMissed() => gameplayController.ShowMissedAction();
+
         public void SetBattleBackgroundImage(Sprite bgSprite) => gameplayController.SetBattleBackgroundImage(bgSprite);
     }
 }
