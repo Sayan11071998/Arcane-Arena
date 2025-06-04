@@ -90,6 +90,7 @@ Let’s connect if you’re into:
 ---
 
 ## Play Link
+https://sayannandi.itch.io/arcade-arena
 
 [![Watch the video](https://img.youtube.com/vi/GDaTn24Y7bA/maxresdefault.jpg)](https://youtu.be/GDaTn24Y7bA)
 ### [Gameplay Video](https://youtu.be/GDaTn24Y7bA)
